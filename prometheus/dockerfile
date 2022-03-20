@@ -1,0 +1,13 @@
+FROM prom/prometheus:latest
+
+COPY prometheus.yml /etc/prometheus/prometheus.yml
+WORKDIR /prometheus
+#RUN .etc/prometheus /promethues
+
+EXPOSE     9090
+EXPOSE     9100
+EXPOSE     3000
+
+VOLUME     [ "/prometheus" ]
+CMD        [ "--config.file=/etc/prometheus/prometheus.yml", \
+             "--storage.tsdb.path=/prometheus"]
