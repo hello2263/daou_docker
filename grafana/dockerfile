@@ -1,0 +1,8 @@
+FROM grafana/grafana
+
+
+EXPOSE 3000
+
+RUN yum install ssmtp
+
+COPY /home/daou_docker/grafana/ssmtp.conf /etc/ssmtp/ssmtp.conf
