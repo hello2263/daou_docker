@@ -1,0 +1,61 @@
+version: "3"
+
+services:
+  node-exporter:
+    container_name: node-exporter
+    image: prom/node-exporter
+    ports:
+      - "9100:9100"
+  
+  tomcat:
+    container_name: tomcat
+    image: tomcat:latest
+    volumes:
+      - ./tomcat/bin/setenv.sh:/usr/local/tomcat/bin/setenv.sh
+      - ./tomcat/etc/config.yaml:/usr/local/tomcat/etc/config.yaml
+      - ./tomcat/etc/jmx_prometheus_javaagent-0.16.1.jar:/usr/local/tomcat/etc/jmx_prometheus_javaagent-0.16.1.jar
+    ports:
+      - "8081:8081"
+
+  httpd:
+    container_name: httpd
+    image: httpd:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./httpd/conf/httpd.conf:/usr/local/apache2/conf/httpd.conf
+      - ./httpd/conf.d/server-status.conf:/usr/local/apache2/conf.d/server-status.conf
+
+  apache-exporter:
+    container_name: apache-exporter
+    image: motork/apache_exporter:latest
+    ports:
+      - 9117:9117
+    command: '--scrape_uri="http://httpd/server-status?auto"'
+
+      #server:
+      # container_name: server
+      # build: ./server
+      #ports:
+      # - "8080:8080"
+      # - "5000:5000"
+
+  blackbox-exporter:
+    container_name: blackbox-exporter
+    image: prom/blackbox-exporter
+    ports:
+      - "9115:9115"
+    volumes:
+      - "./config/blackbox-exporter.yml:/config/blackbox-exporter.yml"
+    command: --config.file=/config/blackbox-exporter.yml
+
+
+  tomcat:
+    container_name: tomcat
+    image: tomcat:latest
+    volumes:
+      - ./tomcat/bin/setenv.sh:/usr/local/tomcat/bin/setenv.sh
+      - ./tomcat/etc/config.yaml:/usr/local/tomcat/etc/config.yaml
+      - ./tomcat/etc/jmx_prometheus_javaagent-0.16.1.jar:/usr/local/tomcat/etc/jmx_prometheus_javaagent-0.16.1.jar
+    ports:
+      - "8081:8081"
