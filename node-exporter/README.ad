@@ -1,0 +1,2 @@
+# node-exporter Run
+docker-compose up -d node-exporter

@@ -1,0 +1,5 @@
+#blackbox-exporter run
+docker-compose up -d blackbox-exporter
+
+
+

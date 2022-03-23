@@ -1,0 +1,7 @@
+#apache run
+docker-compose up -d httpd
+
+#apache-exporter run
+docker-compose up -d apache-exporter
+
+#apache-exporter port : 9117

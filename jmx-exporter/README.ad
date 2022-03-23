@@ -1,0 +1,7 @@
+# Java monitoring tool
+
+# Tomcat Run
+docker-compose up -d tomcat
+
+# Jmx-exporter Run
+docoker-compose up -d jmx-exporter
