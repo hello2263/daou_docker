@@ -1,0 +1,15 @@
+version: "3.3"
+services:
+  mysqld:
+    image: mysql:latest
+    container_name: mysqld
+    environment:
+      MYSQL_ROOT_PASSWORD: "qwe123"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./mysql:/etc/mysql/conf.d
+      - ~/var/mysql:/var/lib/mysql
+    ports:
+      - 3307:3306

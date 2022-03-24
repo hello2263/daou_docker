@@ -1,0 +1,9 @@
+version: "3.7"
+services:
+  mysqld-exporter:
+    container_name: mysqld-exporter
+    image: prom/mysqld-exporter
+    environment:
+      - DATA_SOURCE_NAME=exporter:exporter@(mysqld:3306)/
+    ports:
+      - "9104:9104"
