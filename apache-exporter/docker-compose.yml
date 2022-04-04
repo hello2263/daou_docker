@@ -6,10 +6,10 @@ services:
     container_name: httpd
     image: httpd:latest
     ports:
-      - 8080:80
+      - 8082:80
     volumes:
-      - ./httpd/conf/httpd.conf:/home/daou_docker/exporters/apache/httpd/conf/http.conf
-      - ./httpd/conf.d/server-status.conf:/home/daou_docker/exporters/apache/httpd/conf.d/server-status.conf
+      - ./httpd/conf/httpd.conf:/home/daou_docker/exporters/apache-exporter/httpd/conf/httpd.conf
+      - ./httpd/conf.d/server-status.conf:/home/daou_docker/exporters/apache-exporter/httpd/conf.d/server-status.conf
   
   apache-exporter:
     container_name: apache-exporter

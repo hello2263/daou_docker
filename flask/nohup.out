@@ -1,0 +1,4 @@
+  File "app.py", line 26
+    if command[0] == 'node-exporter':
+    ^
+IndentationError: unexpected indent

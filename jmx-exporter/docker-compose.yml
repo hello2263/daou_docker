@@ -4,13 +4,9 @@ services:
     container_name: tomcat
     image: tomcat:latest
     volumes:
-      #- /home/daou_docker/jmx-exporter/tomcat/bin/setenv.sh:/usr/local/tomcat/bin/setenv.sh
-      #- /home/daou_docker/jmx-exporter/tomcat/bin:/usr/local/tomcat/bin
-      #- /home/daou_docker/jmx-exporter/tomcat/etc:/usr/local/tomcat/etc
-      - ./tomcat:/usr/local/tomcat 
-      #- /home/daou_docker/tomcat/etc/config.yaml:/usr/local/tomcat/etc/config.yaml
-      
-      # - ./tomcat/etc/jmx_prometheus_javaagent-0.16.1.jar:/usr/local/tomcat/etc/jmx_prometheus_javaagent-0.16.1.jar
+      - /home/daou_docker/exporters/jmx-exporter/tomcat/bin/setenv.sh:/usr/local/tomcat/bin/setenv.sh
+      - /home/daou_docker/exporters/jmx-exporter/tomcat/etc/config.yaml:/usr/local/tomcat/etc/config.yaml
+       - /home/daou_docker/exporters/jmx-exporter/jmx_prometheus_javaagent-0.16.1.jar:/usr/local/tomcat/etc/jmx_prometheus_javaagent-0.16.1.jar
     ports:
-      - "8081:8081"
+      - "8080:8080"
 

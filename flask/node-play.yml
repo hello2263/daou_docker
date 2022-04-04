@@ -1,0 +1,20 @@
+---
+- hosts: exporter
+  gather_facts: no
+  tasks:
+    - name: Create node-exproter dir
+      file:
+        path: /home/daou_docker/exporters/node-exporter
+        state: directory
+
+    - name: Install node-exporter
+      template:
+        src: "/home/daou_docker/flask/docker-compose.yml"
+        dest: "/home/daou_docker/exporters/node-exporter"
+
+    - name: Run node-exporter
+      become: true
+      shell:
+        chdir: "/home/daou_docker/exporters/node-exporter"
+        cmd: docker-compose up -d node-exporter
+

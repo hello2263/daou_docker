@@ -1,0 +1,24 @@
+version: "3"
+services:
+  my_prom_A:
+    image: prom/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    volumes:
+      - /home/daou_docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9092:9090"
+  
+  my_prom_B:
+    image: prom/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    volumes:
+      - /home/daou_docker/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "9091:9090"
+
+  nginx:
+    image: my_nginx
+    ports:
+      - "80:80"
